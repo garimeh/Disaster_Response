@@ -2,11 +2,8 @@
 Classifier Trainer
 Project: Disaster Response Pipeline (Udacity - Data Science Nanodegree)
 
-Sample Script Syntax:
+Sample terminal script:
 > python train_classifier.py <path to sqllite  destination db> <path to the pickle file>
-
-Sample Script Execution:
-> python train_classifier.py ../data/disaster_response_db.db classifier.pkl
 
 Arguments:
     1) Path to SQLite destination database (e.g. disaster_response_db.db)
@@ -110,7 +107,7 @@ def evaluate_model(model, X_test, y_test, category_names):
     none - print scores (precision, recall, f1-score) for each output category of the dataset.
     """
     y_pred = model.predict(X_test)
-    for i, column in enumerate(y_test.columns):
+    for i, column in enumerate(category_names):
         print(column)
         print(classification_report(y_test.iloc[:, i], y_pred[:, i]))
 
@@ -129,6 +126,9 @@ def save_model(model, model_filepath):
 
 
 def main():
+    """
+    Starts the sequence for model training.
+    """
     if len(sys.argv) == 3:
         database_filepath, model_filepath = sys.argv[1:]
         print('Loading data...\n    DATABASE: {}'.format(database_filepath))
