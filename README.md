@@ -22,7 +22,7 @@ Use this command to make your virtual environment:
 ```
     python -m venv <name of virtualenv>
 ```
-Then, use ```pip install requirements.txt``` to install the following libraries.
+Then, use ```pip install -r requirements.txt``` to install the following libraries.
 
 - Python 3.10 and above.
 - Sciki-Learn
