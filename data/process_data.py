@@ -5,12 +5,12 @@ Project: Disaster Response Pipeline
 Execution Syntax:
 > python process_data.py <path/to/csv/containing/messages> <path/to/csv/containing/categories> <path/to/sqllite/db>
 > OR 
-> python3 process_data.py <path/to/csv/containing/messages> <path/to/csv/containing/categories> <path/to/sqllite/db>
+> python3 data/process_data.py <path/to/csv/containing/messages> <path/to/csv/containing/categories> <path/to/sqllite/db>
 
 Arguments :
-    1) Path to the CSV file containing messages (e.g. disaster_messages.csv)
-    2) Path to the CSV file containing categories (e.g. disaster_categories.csv)
-    3) Path to SQLite destination database (e.g. disaster_response_db.db)
+    1) Path to the CSV file containing messages (e.g. messages.csv)
+    2) Path to the CSV file containing categories (e.g. categories.csv)
+    3) Path to SQLite destination database (e.g. DisasterResponse.db)
 """
 # Importing libraries
 import sys
