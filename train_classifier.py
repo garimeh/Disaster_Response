@@ -3,7 +3,7 @@ Classifier Trainer
 Project: Disaster Response Pipeline (Udacity - Data Science Nanodegree)
 
 Sample terminal script:
-> python train_classifier.py <path to sqllite  destination db> <path to the pickle file>
+> python train_classifier.py <path to sqllite destination db> <path to the pickle file>
 
 Arguments:
     1) Path to SQLite destination database (e.g. disaster_response_db.db)
@@ -132,17 +132,17 @@ def main():
     if len(sys.argv) == 3:
         database_filepath, model_filepath = sys.argv[1:]
         print('Loading data...\n    DATABASE: {}'.format(database_filepath))
-        X, Y, category_names = load_data(database_filepath)
-        X_train, X_test, Y_train, Y_test = train_test_split(X, Y, test_size=0.2)
+        X, y, category_names = load_data(database_filepath)
+        X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2)
         
         print('Building model...')
-        model = build_model()
+        model = build_model(X, y)
         
         print('Training model...')
-        model.fit(X_train, Y_train)
+        model.fit(X_train, y_train)
         
         print('Evaluating model...')
-        evaluate_model(model, X_test, Y_test, category_names)
+        evaluate_model(model, X_test, y_test, category_names)
 
         print('Saving model...\n    MODEL: {}'.format(model_filepath))
         save_model(model, model_filepath)
