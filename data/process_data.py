@@ -1,6 +1,6 @@
 """
 Preprocessing of Data
-Project: Disaster Response Pipeline (Udacity - Data Scientist 2)
+Project: Disaster Response Pipeline 
 
 Execution Syntax:
 > python process_data.py <path/to/csv/containing/messages> <path/to/csv/containing/categories> <path/to/sqllite/db>
@@ -19,12 +19,29 @@ import pandas as pd
 from sqlalchemy import create_engine
 
 def load_csv(message_path, categories_path):
+    """
+    This function loads the messages file and categories file, and returns
+    a merged dataframe.
+    INPUT:
+        - message_path : path to the .csv file containing messages data
+        - categories_path : path to the .csv containing categories data
+    OUTPUT:
+        returns the combined dataframe.
+    """
     df_mess = pd.read_csv(message_path)
     df_cat = pd.read_csv(categories_path)
     df = pd.merge(df_mess, df_cat, on='id')
     return df
 
 def clean_data(df):
+    """
+    This function cleans and structures the dataframe. Creates different columns for each
+    category, and merge it with the original dataframe.
+    INPUT:
+        - df : dataframe containing the categories dataframe.
+    OUTPUT:
+        - returns clean dataframe
+    """
     categories = df['categories'].str.split(pat=";",expand=True)
     row = categories.iloc[0]
     category_colnames = row.apply(lambda x:x[:-2])
@@ -44,7 +61,7 @@ def save_data_to_db(df, database_filename):
     """
     Save Data to SQLite Database Function
     
-    Arguments:
+    INPUT:
         df -> Combined data containing messages and categories with categories cleaned up
         database_filename -> Path to SQLite destination database
     """
