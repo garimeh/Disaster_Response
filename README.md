@@ -2,7 +2,7 @@
 # Disaster Response Pipeline
 
 This Project is part of Data Scientist 2 Nanodegree Program by Udacity in collaboration with Appen. There are 2 datasets being used: 
-- messages.csv contains labelled tweet and messages from   real-life disaster events. 
+- messages.csv contains labelled tweet and messages from real-life disaster events. 
 - categories.csv contains the categories in which the tweets are to be labelled.
 
 The project aim is to build a Natural Language Processing (NLP) model to categorize messages on a real time basis.
@@ -37,7 +37,7 @@ You can run the following commands in the project's directory to set up the data
 
 - To run ETL pipeline to clean data and store the processed data in the database
   ```python data/process_data.py data/messages.csv data/categories.csv data/DisasterResponse.db```
-- To run the ML pipeline that loads data from DB, trains classifier and saves the classifier as a pickle file ```python train_classifier.py data/DisasterResponse.db model.pkl```
+- To run the ML pipeline that loads data from DB, trains classifier and saves the classifier as a pickle file ```python models/train_classifier.py data/DisasterResponse.db models/model.pkl```
 - Run the following command in the app's directory to run your web app:
     
        ```python run.py```
