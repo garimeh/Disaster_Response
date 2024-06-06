@@ -44,6 +44,27 @@ You can run the following commands in the project's directory to set up the data
 
 - Go to http://0.0.0.0:3001/
 
+## Files In The Repository:
+```
+- Disaster_Response
+    - README.md
+    - requirements.txt
+    - app
+        - run.py
+        - templates
+            - go.html
+            - master.html
+    - data
+        - DisasterResponse.db
+        - ETL Pipeline Preparation.ipynb
+        - categories.csv
+        - messages.csv
+        - process_data.py
+    - models
+        - ML Pipeline Preparation.ipynb
+        - train_classifier.py
+```
+
 ## Note:
 - I have not been able to add my trained model due to the memory limits for each file on github. My model was coming out to be more than 100MB, which is the file limit on github.
 - When dealing with an imbalanced dataset, especially in tasks like multi-label classification for disaster response, certain categories can have significantly fewer samples than others. This imbalance affects the training and performance evaluation of machine learning models in several key ways:
