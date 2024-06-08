@@ -7,7 +7,6 @@ from flask import Flask, render_template, request, jsonify
 from plotly.graph_objs import Bar
 import joblib
 from sqlalchemy import create_engine
-   
 
 app = Flask(__name__)
 
@@ -22,22 +21,26 @@ def tokenize(text):
 
     return clean_tokens
 
-# load data
+# Load data
 engine = create_engine('sqlite:///data/DisasterResponse.db')
 df = pd.read_sql_table('DisasterResponse_table', engine)
 
-# load model
+# Load model
 model = joblib.load("models/model.pkl")
 
-
-# index webpage displays cool visuals and receives user input text for model
+# Index webpage displays cool visuals and receives user input text for model
 @app.route('/')
 @app.route('/index')
 def index():
-    # Extract data needed for visuals
+    # Extract data needed for the first visual
     genre_counts = df.groupby('genre').count()['message']
     genre_names = list(genre_counts.index)
-    
+
+    # Extract data for the second visual
+    # Assuming the category columns start from the 5th column in your DataFrame
+    category_counts = df.iloc[:, 4:].sum().sort_values(ascending=False)
+    category_names = list(category_counts.index)
+
     # Create visuals
     graphs = [
         {
@@ -56,13 +59,31 @@ def index():
                     'title': "Genre"
                 }
             }
+        },
+        {
+            'data': [
+                Bar(
+                    x=category_names,
+                    y=category_counts
+                )
+            ],
+            'layout': {
+                'title': 'Top Categories of Messages',
+                'yaxis': {
+                    'title': "Count"
+                },
+                'xaxis': {
+                    'title': "Category",
+                    'tickangle': -45
+                }
+            }
         }
     ]
-    
+
     # Encode plotly graphs in JSON
     ids = ["graph-{}".format(i) for i, _ in enumerate(graphs)]
     graphJSON = json.dumps(graphs, cls=plotly.utils.PlotlyJSONEncoder)
-    
+
     # Render web page with plotly graphs
     return render_template('master.html', ids=ids, graphJSON=graphJSON)
 
